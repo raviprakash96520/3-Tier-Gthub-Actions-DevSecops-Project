@@ -206,6 +206,13 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
+      # 🛠️ Set up kubectl
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: latest
+
+
       # 🧹 IMPORTANT: clean old kubeconfig (FIXES YOUR ERROR)
       - name: Clean kubeconfig
         run: |

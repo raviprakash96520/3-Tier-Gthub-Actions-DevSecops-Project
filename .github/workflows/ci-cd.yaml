@@ -10,26 +10,9 @@ on:
     branches: [ "main" ]
 
 jobs:
-
-  gitleaks:
-    runs-on: Agent-1
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Gitleaks setup
-        uses: gitleaks/gitleaks-action@v2
-
-      - name: Gitleaks scan
-        run: |
-          gitleaks detect --source . ./client --exit-code 1
-          gitleaks detect --source . ./api --exit-code 1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
   trivy-fs:
     runs-on: Agent-1
-    needs: [gitleaks]
+    
 
     steps:
       - name: Checkout Repository

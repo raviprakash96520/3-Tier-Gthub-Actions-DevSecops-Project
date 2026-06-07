@@ -31,7 +31,6 @@ metadata:
   name: frontend
   namespace: expense
 spec:
-  type: LoadBalancer
   selector:
     app: frontend
     tier: web

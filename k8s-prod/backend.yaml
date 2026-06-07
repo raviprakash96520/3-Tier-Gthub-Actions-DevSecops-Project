@@ -5,15 +5,15 @@ metadata:
   namespace: expense
 data:
   DB_HOST: mysql
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: mysql-secret
-  namespace: expense
-type: Opaque
-data:
-  DB_PWD: RXhwZW5zZUFwcEAx
+
+# apiVersion: v1
+# kind: Secret
+# metadata:
+#   name: mysql-secret
+#   namespace: expense
+# type: Opaque
+# data:
+#   DB_PWD: RXhwZW5zZUFwcEAx
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -51,8 +51,8 @@ spec:
         envFrom:
         - configMapRef:
             name: backend
-        - secretRef:
-            name: mysql-secret
+        # - secretRef:
+        #     name: mysql-secret
 ---
 kind: Service
 apiVersion: v1

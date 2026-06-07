@@ -63,7 +63,7 @@ jobs:
         uses: sonarsource/sonarqube-scan-action@master
 
         with:
-          projectBaseDir: server
+          projectBaseDir: api
           args: >
             -Dsonar.projectKey=myorg_server
             -Dsonar.projectName=myorg_server

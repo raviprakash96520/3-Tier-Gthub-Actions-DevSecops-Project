@@ -235,5 +235,5 @@ jobs:
           kubectl apply -f k8s-prod/mysql.yaml
           kubectl apply -f k8s-prod/backend.yaml
           kubectl apply -f k8s-prod/frontend.yaml
-          kubectl apply -f k8s-prod/namespace.yamla
+          kubectl apply -f k8s-prod/namespace.yaml
           kubectl apply -f k8s-prod/ingress.yaml

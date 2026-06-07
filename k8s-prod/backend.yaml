@@ -6,14 +6,15 @@ metadata:
 data:
   DB_HOST: mysql
 ---
-# apiVersion: v1
-# kind: Secret
-# metadata:
-#   name: mysql-secret
-# type: Opaque
-# data:
-#   DB_PWD: RXhwZW5zZUFwcEAx
-# ---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-secret
+  namespace: expense
+type: Opaque
+data:
+  DB_PWD: RXhwZW5zZUFwcEAx
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -40,11 +41,18 @@ spec:
       containers:
       - name: backend
         image: ravi6198/backend:v1.0.0
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "256Mi"
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
         envFrom:
         - configMapRef:
             name: backend
-        # - secretRef:
-        #     name: mysql-secret
+        - secretRef:
+            name: mysql-secret
 ---
 kind: Service
 apiVersion: v1

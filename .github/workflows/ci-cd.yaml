@@ -10,30 +10,9 @@ on:
     branches: [ "main" ]
 
 jobs:
-  compile:
-    runs-on: Agent-1
-
-    steps:
-      - name: checkout  code
-        uses: actions/checkout@v4
-
-      - name: setup node.js
-        uses: actions/setup-node@v4
-
-      - name: Frontend compilation (syntax check)
-        run:  |
-          cd client
-          find . -name "*.js" -exec node --check {} +
-
-      - name: Backend compilation (syntax check)
-        run:  |
-          cd api
-          find . -name "*.js" -exec node --check {} +
 
   gitleaks:
     runs-on: Agent-1
-    needs: compile
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4

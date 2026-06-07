@@ -10,9 +10,32 @@ on:
     branches: [ "main" ]
 
 jobs:
+
+  compile:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout  code
+        uses: actions/checkout@v4
+
+      - name: setup node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Frontend compilation (syntax check)
+        run:  |
+          cd client
+          find . -name "*.js" -exec node --check {} +
+
+      - name: Backend compilation (syntax check)
+        run:  |
+          cd api
+          find . -name "*.js" -exec node --check {} +
+
+
   trivy-fs:
     runs-on: Agent-1
-    
 
     steps:
       - name: Checkout Repository
